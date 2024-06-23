@@ -15,3 +15,4 @@ fpdf
 youtube-transcript-api
 pytube
 chromadb
+sqlite3
