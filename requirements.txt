@@ -9,3 +9,6 @@ langchain_google_genai
 langchain_text_splitters
 python-docx
 pypdf2
+fpdf
+youtube-transcript-api
+pytube
