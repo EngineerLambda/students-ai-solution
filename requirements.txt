@@ -5,6 +5,7 @@ llama-index-vector-stores-mongodb
 pymongo
 langchain
 langchain_core
+langchain_chroma
 langchain_community
 langchain_google_genai
 langchain_text_splitters
