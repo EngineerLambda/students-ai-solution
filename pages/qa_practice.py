@@ -113,6 +113,6 @@ if st.session_state.qa_json:
         st.error(f"This error {e} just occured, regenerate new questions please, as this model is a free and unstable one")
     
 else:
-    st.warning("Upload docuument and specify number of questions to proceed")
+    st.warning("Upload document and specify number of questions to proceed")
 
 

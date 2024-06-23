@@ -1,11 +1,11 @@
 import os
 import streamlit as st
 from langchain_community.document_loaders import YoutubeLoader
+from langchain_community.vectorstores import FAISS
 from langchain.chains.llm import LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain_chroma import Chroma
 from langchain.memory import ConversationBufferMemory
 
 
@@ -49,7 +49,7 @@ class YTask:
 
     def split_and_embed(self):
         data = self.load_yt_transcript()
-        vector_db = Chroma.from_documents(data, embedding=self.embedding)
+        vector_db = FAISS.from_documents(data, embedding=self.embedding)
 
         return vector_db.as_retriever()
 
