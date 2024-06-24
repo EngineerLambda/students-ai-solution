@@ -74,7 +74,7 @@ with st.sidebar:
                 llm = GoogleGenerativeAI(model="gemini-pro")
                 parser = JsonOutputParser()
                 full_prompt = template.format(context=format_context(document), number=number_ip, format_instructions=parser.get_format_instructions())
-            
+
                 llm_response = llm(full_prompt)
                 qas = parser.parse(llm_response)
                 
@@ -94,20 +94,25 @@ if st.session_state.qa_json:
         
         user_answer = st.text_area("Provide your answer here", key=st.session_state.count)
         if st.button("Evaluate with AI"):
-            help_template = help_template.format(question=current_q, student_answer=user_answer, ground_truth=current_a)
-            help_response = help_llm(help_template)
-            st.write(help_response)
+            with st.spinner("Evaluating"):
+                help_template = help_template.format(question=current_q, student_answer=user_answer, ground_truth=current_a)
+                help_response = help_llm(help_template)
+                st.write(help_response)
         
         if st.button("Reveal answer"):
             st.write("Actual answer from material")
             st.write(current_a)
             
         if st.button("NEXT"):
-            st.session_state.count += 1
-            st.rerun()
+            if user_answer:
+                st.session_state.count += 1
+                st.rerun()
+            else:
+                st.error("You have not provided any answer, you can just say you don't know, you know")
             
     except IndexError:
         st.markdown("## Congratulations, You have come to the end of this session, you are free to regenerate more questions and practice more.")
+        st.session_state.count = 0
         
     except Exception as e:
         st.error(f"This error {e} just occured, regenerate new questions please, as this model is a free and unstable one")
