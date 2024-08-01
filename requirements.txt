@@ -14,3 +14,5 @@ fpdf
 youtube-transcript-api
 pytube
 faiss-cpu
+Pillow==10.4.0
+protobuf
