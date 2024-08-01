@@ -9,8 +9,8 @@ template = """
 Explan this image with the given instruction here
 **Instruction : {}
 """
-
-genai.configure(api_key="AIzaSyDcz9NsperRXpD47qtLxkHuEMU6P8Lmqnk")
+google_key = st.secrets["GOOGLE_API_KEY"]
+genai.configure(api_key=google_key)
 
 model = genai.GenerativeModel(model_name="gemini-1.5-flash")
 
